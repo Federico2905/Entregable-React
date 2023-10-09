@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:15px;
+    padding-right:10px;
+    width: 515px;
+    background-color: #1a1a1a;
+}
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0px;
+}
+.button{
+    height: fit-content;
+    width: fit-content;
+}
+.icon{
+    font-size: 25px;
+}
