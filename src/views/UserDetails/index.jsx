@@ -42,7 +42,7 @@ const UserDetails = () => {
     console.log(limit);
   };
   useEffect(() => {
-    // console.log(CurrentUser);
+    console.log(CurrentUser);
     GetRepos();
   }, []);
 

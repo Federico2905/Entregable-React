@@ -6,6 +6,9 @@ import { Octokit } from "octokit";
 import { useEffect, useState } from "react";
 //importaciones de utils
 import { ParseDate } from "../../../utils/ParseDate";
+//importaciones de fontawesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faCalendar } from "@fortawesome/free-solid-svg-icons";
 
 const RepoCard = ({ repo, owner }) => {
   const [Repo, setRepo] = useState({ name: "", language: "", created: "", watchers: 0 });
@@ -42,11 +45,11 @@ const RepoCard = ({ repo, owner }) => {
         </li>
         <li>
           <b>Created on: </b>
-          {ParseDate(created)}
+          {ParseDate(created)} <FontAwesomeIcon icon={faCalendar} />
         </li>
         <li>
           <b>Watchers: </b>
-          {watchers}
+          {watchers} <FontAwesomeIcon icon={faEye} />
         </li>
       </ul>
     </div>

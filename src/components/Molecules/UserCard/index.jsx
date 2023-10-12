@@ -10,6 +10,9 @@ import { ParseDate } from "../../../utils/ParseDate";
 import { Link } from "react-router-dom";
 //importacion de un context
 import { userContext } from "../../../contexts/userContext";
+//importaciones de fontawesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope,faCalendar,faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
 const UserCard = ({ username }) => {
   const { setCurrentUser } = useContext(userContext);
@@ -29,7 +32,7 @@ const UserCard = ({ username }) => {
     getUser();
   }, []);
   if (!email) {
-    email = "No registered email";
+    email = "No email registered";
   }
   if (!name){
     name=login
@@ -44,13 +47,13 @@ const UserCard = ({ username }) => {
               <b>Username:</b> {name}
             </li>
             <li>
-              <b>Email:</b> {email}
+              <b>Email:</b> {email} {email !== "No email registered" && <FontAwesomeIcon icon={faEnvelope}/>}
             </li>
             <li>
-              <b>Followers:</b> {followers}
+              <b>Followers:</b> {followers} <FontAwesomeIcon icon={faUserGroup}/>
             </li>
             <li>
-              <b>Member since:</b> {ParseDate(created_at)}
+              <b>Member since:</b> {ParseDate(created_at)} <FontAwesomeIcon icon={faCalendar}/>
             </li>
           </ul>
         </div>

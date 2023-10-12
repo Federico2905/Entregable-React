@@ -8,3 +8,11 @@
     margin: 10px;
     width: fit-content;
 }
+.error{
+    border:solid 1px red;
+}
+.errorText{
+    color: red;
+    margin: 0px;
+    margin-bottom: 5px;
+}
