@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(60, 56, 56);
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+.repoList{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0px;
+    padding: 0px;
+}

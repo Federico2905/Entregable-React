@@ -19,25 +19,20 @@ const UserCard = ({ username }) => {
     const response = await octokit.request("GET /users/{username}", {
       username: username,
     });
-    const User= response.data
-    // const { avatar_url, login, email, followers, created_at } = response.data;
-    // const User = {
-    //   avatar: avatar_url,
-    //   name: login,
-    //   email,
-    //   followers,
-    //   since: created_at,
-    // };
+    const User = response.data;
     setUser(User);
   };
 
-  let { avatar_url, login, email, followers, created_at } = User
+  let { avatar_url, login,name, email, followers, created_at } = User;
 
   useEffect(() => {
     getUser();
   }, []);
-  if (!email){
-    email="No registred email"
+  if (!email) {
+    email = "No registered email";
+  }
+  if (!name){
+    name=login
   }
   return (
     <div className={container}>
@@ -46,7 +41,7 @@ const UserCard = ({ username }) => {
         <div>
           <ul className={infoList}>
             <li>
-              <b>Username:</b> {login}
+              <b>Username:</b> {name}
             </li>
             <li>
               <b>Email:</b> {email}
@@ -61,7 +56,8 @@ const UserCard = ({ username }) => {
         </div>
       </div>
       <Link to={`/users/${login}`}>
-        <button className={detailsButton}
+        <button
+          className={detailsButton}
           onClick={() => {
             setCurrentUser(User);
           }}>
