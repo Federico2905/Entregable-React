@@ -42,7 +42,7 @@ const RepoModal = ({ isOpen, Repo, CloseModal }) => {
     description = "This repository has no description";
   }
   if (!license) {
-    license = "This repository does not have a license";
+    license = { name: "This repository does not have a license" };
   }
   const CloneText = `git clone ${clone_url}`;
   return (
@@ -84,7 +84,7 @@ const RepoModal = ({ isOpen, Repo, CloseModal }) => {
               <b>Watchers:</b> {watchers} <FontAwesomeIcon icon={faEye} />
             </li>
             <li>
-              <b>License:</b> {license}
+              <b>License:</b> {license.name}
             </li>
           </ul>
           <div className={descriptionContainer}>

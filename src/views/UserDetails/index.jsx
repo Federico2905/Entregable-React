@@ -37,12 +37,13 @@ const UserDetails = () => {
     const response = await octokit.request(`GET ${repos_url}{?per_page}`, {
       per_page: 10,
     });
+    // console.log(response.data);
     SetRepos(response.data);
     const limit = await octokit.request("GET /rate_limit");
     console.log(limit);
   };
   useEffect(() => {
-    console.log(CurrentUser);
+    // console.log(CurrentUser);
     GetRepos();
   }, []);
 

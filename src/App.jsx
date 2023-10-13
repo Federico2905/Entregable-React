@@ -16,6 +16,9 @@ const App = () => {
         <Route exact path="/users/:username">
           <UserDetails />
         </Route>
+        <Route>
+          <Home />
+        </Route>
       </Switch>
     </Router>
   );

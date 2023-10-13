@@ -1,5 +1,5 @@
 //importacion de estilos
-import { container, InfoList, containerSec, detailsButton } from "./RepoCard.module.css";
+import { container, InfoList, detailsButton, repoName, infoListSec } from "./RepoCard.module.css";
 //importacion de Octokit
 import { Octokit } from "octokit";
 //importaciones de hooks
@@ -32,12 +32,12 @@ const RepoCard = ({ repo, owner }) => {
     <>
       <Modal />
       <div className={container}>
-        <div className={containerSec}>
+        <li className={repoName}>
+          <b>Repository name: </b>
+          {name}
+        </li>
+        <div className={infoListSec}>
           <ul className={InfoList}>
-            <li>
-              <b>Repository name: </b>
-              {name}
-            </li>
             <li>
               <b>Language: </b>
               {language}
@@ -51,14 +51,14 @@ const RepoCard = ({ repo, owner }) => {
               {watchers} <FontAwesomeIcon icon={faEye} />
             </li>
           </ul>
+          <button
+            className={detailsButton}
+            onClick={() => {
+              OpenModal(Repo);
+            }}>
+            See details
+          </button>
         </div>
-        <button
-          className={detailsButton}
-          onClick={() => {
-            OpenModal(Repo);
-          }}>
-          See details
-        </button>
       </div>
     </>
   );

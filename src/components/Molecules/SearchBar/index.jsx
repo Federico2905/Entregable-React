@@ -21,7 +21,7 @@ const SearchBar = () => {
     // //Parte de la busqueda de usuarios
     const UserResponse = await octokit.request("GET /search/users?q={q}{&per_page}", {
       q: `${Search} in:login`,
-      per_page: 1,
+      per_page: 10,
     });
     // console.log(Object.values(UserResponse.data.items));
     const UserData = Object.values(UserResponse.data.items);
@@ -40,7 +40,7 @@ const SearchBar = () => {
     // // Parte de la busqueda de repositorios
     const ReposResponse = await octokit.request("GET /search/repositories?q={q}{&per_page}", {
       q: `${Search} in:name`,
-      per_page: 1,
+      per_page: 10,
     });
     const ReposData = Object.values(ReposResponse.data.items);
     let arrReposFound = [];
