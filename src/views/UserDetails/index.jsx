@@ -4,7 +4,7 @@ import { homeButton, container, containerSecLeft, infoList, title, reposList, im
 import { useContext, useEffect, useState } from "react";
 //importaciones del Router
 import { Link } from "react-router-dom";
-//importaciones de fontawesome
+//importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 //importaciones de utils
@@ -106,7 +106,7 @@ const UserDetails = () => {
           <h2 className={title}>Public Repositories:</h2>
           <div className={reposList}>
             {Repos.map((Repo) => {
-              return <UserDetailsRepoCard key={Repo.id} {...Repo} />;
+              return <UserDetailsRepoCard key={Repo.id} Repo={Repo} />;
             })}
           </div>
         </div>

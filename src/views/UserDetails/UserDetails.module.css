@@ -1,19 +1,22 @@
-.homeButton{
+.homeButton {
     position: absolute;
     top: 30px;
     left: 30px;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding:20px;
+    padding: 20px;
     background-color: #1a1a1a;
 }
-.containerSecLeft{
+
+.containerSecLeft {
     height: fit-content;
 }
-.infoList{
+
+.infoList {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -24,11 +27,13 @@
     margin-top: 5px;
     margin-bottom: 0px;
 }
-.title{
+
+.title {
     margin: 0px;
     margin-bottom: 20px;
 }
-.reposList{
+
+.reposList {
     height: 587px;
     overflow: auto;
     display: flex;
@@ -38,7 +43,8 @@
     min-width: 422.05px;
     width: fit-content;
 }
-.img{
+
+.img {
     width: 420px;
     height: 420px;
 }

@@ -1,0 +1,106 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalOverlay {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    opacity: 0.7;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    gap: 20px;
+    padding: 25px;
+    z-index: 1;
+    background-color: #1a1a1a;
+    border-radius: 6px;
+    font-size: 20px;
+}
+
+.infoList {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    border: solid 1px black;
+    background-color: rgb(63, 62, 62);
+    border-radius: 5px;
+    min-width: 500px;
+    width: fit-content;
+}
+
+.infoList li {
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+.title {
+    font-size: 4rem;
+    margin: 0px;
+}
+
+.bodySec {
+    display: flex;
+    gap: 15px;
+}
+
+.descriptionContainer {
+    width: 500px;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 3px 5px;
+    background-color: rgb(63, 62, 62);
+}
+
+.descriptionContainer p {
+    margin: 0px;
+}
+
+.input {
+    max-width: 918.59px;
+    width: 100%;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: black;
+    font-family: monospace;
+}
+
+.subtitle {
+    margin: 0px;
+}
+
+.note {
+    margin: 0px;
+    margin-top: 5px;
+    font-weight: 625;
+}
+
+.cloning {
+    font-weight: 500;
+    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.closeButton {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 30px;
+}

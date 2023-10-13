@@ -22,7 +22,7 @@ const ReposList = ({ Found }) => {
               {isCollapsed == false && (
                 <div className={reposList}>
                   {Found.map((repo) => {
-                    return <RepoCard key={repo.repo}{...repo} />;
+                    return <RepoCard key={repo.repo} {...repo} />;
                   })}
                 </div>
               )}

@@ -1,17 +1,20 @@
-.input{
+.input {
     width: 433.44px;
     font-size: 20px;
 }
-.container{
+
+.container {
     display: flex;
     gap: 10px;
     margin: 10px;
     width: fit-content;
 }
-.error{
-    border:solid 1px red;
+
+.error {
+    border: solid 1px red;
 }
-.errorText{
+
+.errorText {
     color: red;
     margin: 0px;
     margin-bottom: 5px;

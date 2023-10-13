@@ -1,5 +1,5 @@
 //importaciones de estilos
-import { input, container,error,errorText } from "./SearchBar.module.css";
+import { input, container, error, errorText } from "./SearchBar.module.css";
 //importacion de Octokit
 import { Octokit } from "octokit";
 //importaciones de hooks
@@ -9,14 +9,14 @@ import { foundContext } from "../../../contexts/foundContext";
 
 const SearchBar = () => {
   const [Search, SetSearch] = useState("");
-  const [Error, SetError]=useState(false)
+  const [Error, SetError] = useState(false);
   const { SetFound } = useContext(foundContext);
   const octokit = new Octokit({});
 
   const APISearch = async (Search) => {
-    if(!Search){
-      SetError(true)
-      return
+    if (!Search) {
+      SetError(true);
+      return;
     }
     // //Parte de la busqueda de usuarios
     const UserResponse = await octokit.request("GET /search/users?q={q}{&per_page}", {
@@ -56,7 +56,7 @@ const SearchBar = () => {
       arrReposFound.push("No repos has been found");
     }
     SetFound({ Users: arrUsersFound, Repos: arrReposFound });
-    SetError(false)
+    SetError(false);
     const limit = await octokit.request("GET /rate_limit");
     console.log(limit);
   };
@@ -68,24 +68,24 @@ const SearchBar = () => {
 
   return (
     <>
-    <div className={container}  >
-      <input
-        className={`${input} ${Error? error : ""}`}
-        type="text"
-        value={Search}
-        onChange={(e) => {
-          SetSearch(e.target.value);
-        }}
-      />
+      <div className={container}>
+        <input
+          className={`${input} ${Error ? error : ""}`}
+          type="text"
+          value={Search}
+          onChange={(e) => {
+            SetSearch(e.target.value);
+          }}
+        />
 
-      <button
-        onClick={() => {
-          APISearch(Search);
-        }}>
-        Search
-      </button>
-    </div>
-    {Error == true && <p className={errorText}>You must write something to search!</p>}
+        <button
+          onClick={() => {
+            APISearch(Search);
+          }}>
+          Search
+        </button>
+      </div>
+      {Error == true && <p className={errorText}>You must write something to search!</p>}
     </>
   );
 };

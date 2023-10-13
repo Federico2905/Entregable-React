@@ -10,9 +10,9 @@ import { ParseDate } from "../../../utils/ParseDate";
 import { Link } from "react-router-dom";
 //importacion de un context
 import { userContext } from "../../../contexts/userContext";
-//importaciones de fontawesome
+//importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope,faCalendar,faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faCalendar, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
 const UserCard = ({ username }) => {
   const { setCurrentUser } = useContext(userContext);
@@ -26,7 +26,7 @@ const UserCard = ({ username }) => {
     setUser(User);
   };
 
-  let { avatar_url, login,name, email, followers, created_at } = User;
+  let { avatar_url, login, name, email, followers, created_at } = User;
 
   useEffect(() => {
     getUser();
@@ -34,8 +34,8 @@ const UserCard = ({ username }) => {
   if (!email) {
     email = "No email registered";
   }
-  if (!name){
-    name=login
+  if (!name) {
+    name = login;
   }
   return (
     <div className={container}>
@@ -47,13 +47,13 @@ const UserCard = ({ username }) => {
               <b>Username:</b> {name}
             </li>
             <li>
-              <b>Email:</b> {email} {email !== "No email registered" && <FontAwesomeIcon icon={faEnvelope}/>}
+              <b>Email:</b> {email} {email !== "No email registered" && <FontAwesomeIcon icon={faEnvelope} />}
             </li>
             <li>
-              <b>Followers:</b> {followers} <FontAwesomeIcon icon={faUserGroup}/>
+              <b>Followers:</b> {followers} <FontAwesomeIcon icon={faUserGroup} />
             </li>
             <li>
-              <b>Member since:</b> {ParseDate(created_at)} <FontAwesomeIcon icon={faCalendar}/>
+              <b>Member since:</b> {ParseDate(created_at)} <FontAwesomeIcon icon={faCalendar} />
             </li>
           </ul>
         </div>
