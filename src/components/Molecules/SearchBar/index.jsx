@@ -18,10 +18,10 @@ const SearchBar = () => {
       SetError(true);
       return;
     }
-    // //Parte de la busqueda de usuarios
+    //Parte de la busqueda de usuarios
     const UserResponse = await octokit.request("GET /search/users?q={q}{&per_page}", {
       q: `${Search} in:login`,
-      per_page: 10,
+      per_page: 1,
     });
     // console.log(Object.values(UserResponse.data.items));
     const UserData = Object.values(UserResponse.data.items);
@@ -37,10 +37,10 @@ const SearchBar = () => {
       arrUsersFound.push("No users has been found");
     }
 
-    // // Parte de la busqueda de repositorios
+    // Parte de la busqueda de repositorios
     const ReposResponse = await octokit.request("GET /search/repositories?q={q}{&per_page}", {
       q: `${Search} in:name`,
-      per_page: 10,
+      per_page: 1,
     });
     const ReposData = Object.values(ReposResponse.data.items);
     let arrReposFound = [];
@@ -63,7 +63,6 @@ const SearchBar = () => {
 
   // useEffect(() => {
   //   console.log(Search);
-  //   console.log(Found);
   // }, [Search]);
 
   return (
