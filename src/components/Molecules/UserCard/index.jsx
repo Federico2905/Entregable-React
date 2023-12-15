@@ -1,9 +1,7 @@
 //Importacion de estilos
 import { container, containerSec, infoList, img, detailsButton } from "./UserCard.module.css";
-//importacion de Octokit
-import { Octokit } from "octokit";
 //importaciones de hooks
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 //importaciones de utils
 import { ParseDate } from "../../../utils/ParseDate";
 //Importaciones del Router
@@ -14,23 +12,14 @@ import { userContext } from "../../../contexts/userContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faCalendar, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
-const UserCard = ({ username }) => {
+const UserCard = ({ User }) => {
   const { setCurrentUser } = useContext(userContext);
-  const octokit = new Octokit();
-  const [User, setUser] = useState({});
-  const getUser = async () => {
-    const response = await octokit.request("GET /users/{username}", {
-      username: username,
-    });
-    const User = response.data;
-    setUser(User);
-  };
-
   let { avatar_url, login, name, email, followers, created_at } = User;
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   console.log("User:", User);
+  // }, [User]);
+
   if (!email) {
     email = "No email registered";
   }

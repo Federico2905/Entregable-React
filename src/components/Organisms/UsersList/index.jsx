@@ -1,17 +1,40 @@
 //importacion de estilos
 import { container, usersList } from "./UsersList.module.css";
 //importaciones de hooks
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 //importaciones de componentes
 import ListUI from "../../Molecules/ListUI";
 import UserCard from "../../Molecules/UserCard";
+//importacion de un context
+import { searchContext } from "../../../contexts/searchContext";
 
 const UsersList = ({ Found }) => {
   const [IsCollapsed, setIsCollapsed] = useState(false);
+  const { CurrentSearch } = useContext(searchContext);
 
-  // useEffect(() => {
-  //   console.log(Found);
-  // }, [Found]);
+  const saveData = async () => {
+    if (CurrentSearch === "") {
+      return;
+    }
+    const SavedUsersResponse = await fetch(`http://localhost:5000/api/v1/searches/users/${CurrentSearch}`);
+    if (SavedUsersResponse.statusText != "Not Found") {
+      console.log("The users were saved");
+      return;
+    }
+    const response = await fetch("http://localhost:5000/api/v1/searches", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ searchTerm: CurrentSearch, type: "users", searchResult: Found }),
+    });
+
+    console.log("UsersSaved:", await response.json());
+  };
+  useEffect(() => {
+    saveData();
+    // console.log("UsersFound:", Found);
+  }, [Found]);
   return (
     <div className={container}>
       {Found.length != 0 && (
@@ -23,7 +46,7 @@ const UsersList = ({ Found }) => {
               {IsCollapsed === false && (
                 <div className={usersList}>
                   {Found.map((foundeduser) => {
-                    return <UserCard key={foundeduser.username} {...foundeduser} />;
+                    return <UserCard key={foundeduser.login} User={foundeduser} />;
                   })}
                 </div>
               )}

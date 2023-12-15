@@ -1,9 +1,7 @@
 //importacion de estilos
 import { container, InfoList, detailsButton, repoName, infoListSec } from "./RepoCard.module.css";
-//importacion de Octokit
-import { Octokit } from "octokit";
 //importaciones de hooks
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 //importaciones de utils
 import { ParseDate } from "../../../utils/ParseDate";
 //importaciones de iconos de FontAwesome
@@ -12,21 +10,12 @@ import { faEye, faCalendar } from "@fortawesome/free-solid-svg-icons";
 //importacion de un hook
 import { useRepoModal } from "../../../hooks/useRepoModal";
 
-const RepoCard = ({ repo, owner }) => {
-  const [Repo, setRepo] = useState({ name: "", language: "", created_at: "", watchers: 0 });
+const RepoCard = ({ Repo }) => {
   const { OpenModal, Modal } = useRepoModal();
-  const octokit = new Octokit();
-  const GetRepo = async () => {
-    const response = await octokit.request("GET /repos/{owner}/{repo}", {
-      owner: owner,
-      repo: repo,
-    });
-    setRepo(response.data);
-  };
 
-  useEffect(() => {
-    GetRepo();
-  }, []);
+  // useEffect(() => {
+  //   console.log("Repo:", Repo);
+  // }, []);
   const { name, language, created_at, watchers } = Repo;
   return (
     <>
