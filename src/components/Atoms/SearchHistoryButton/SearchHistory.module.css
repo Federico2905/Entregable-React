@@ -1,0 +1,12 @@
+.searchHistoryButton {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    top: 30px;
+    right: 30px;
+}
+
+.searchHistoryIcon {
+    font-size: 30px;
+}

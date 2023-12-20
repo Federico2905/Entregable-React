@@ -9,7 +9,8 @@ import { foundContext } from "../../../contexts/foundContext";
 import { searchContext } from "../../../contexts/searchContext";
 
 const SearchBar = () => {
-  const { CurrentSearch, setCurrentSearch } = useContext(searchContext);
+  const { setCurrentSearchGlobal } = useContext(searchContext);
+  const [CurrentSearchLocal, setCurrentSearchLocal] = useState("");
   const [Error, SetError] = useState(false);
   const { SetFound } = useContext(foundContext);
   const octokit = new Octokit({});
@@ -28,11 +29,10 @@ const SearchBar = () => {
       const SavedUsers = SavedUsersData.result.searchResult;
       arrUsersFound = SavedUsers;
       // console.log("SavedUSers:", SavedUsers);
-    }
-    if (SavedUsersResponse.statusText === "Not Found") {
+    } else {
       const UserResponse = await octokit.request("GET /search/users?q={q}{&per_page}", {
         q: `${Search} in:login`,
-        per_page: 1,
+        per_page: 3,
       });
       const UserData = Object.values(UserResponse.data.items);
       // console.log("UserData:",UserData);
@@ -47,8 +47,8 @@ const SearchBar = () => {
       await Promise.all(UserPromises);
       if (arrUsersFound.length == 0) {
         arrUsersFound.push("No users has been found");
+        // console.log("arrUsersFound:", arrUsersFound);
       }
-      // console.log("arrUsersFound:", arrUsersFound);
     }
 
     // Parte de la busqueda de repositorios
@@ -59,11 +59,10 @@ const SearchBar = () => {
       const SavedRepos = SavedReposData.result.searchResult;
       arrReposFound = SavedRepos;
       // console.log("SavedRepos:", SavedRepos);
-    }
-    if (SavedReposResponse.statusText === "Not Found") {
+    } else {
       const ReposResponse = await octokit.request("GET /search/repositories?q={q}{&per_page}", {
         q: `${Search} in:name`,
-        per_page: 1,
+        per_page: 3,
       });
       const ReposData = Object.values(ReposResponse.data.items);
       // console.log("ReposData",ReposData);
@@ -81,6 +80,7 @@ const SearchBar = () => {
       }
       // console.log("arrReposFound:", arrReposFound);
     }
+    setCurrentSearchGlobal(Search);
     SetFound({ Users: arrUsersFound, Repos: arrReposFound });
     SetError(false);
     const limit = await octokit.request("GET /rate_limit");
@@ -97,15 +97,15 @@ const SearchBar = () => {
         <input
           className={`${input} ${Error ? error : ""}`}
           type="text"
-          value={CurrentSearch}
+          value={CurrentSearchLocal}
           onChange={(e) => {
-            setCurrentSearch(e.target.value);
+            setCurrentSearchLocal(e.target.value);
           }}
         />
 
         <button
           onClick={() => {
-            APISearch(CurrentSearch);
+            APISearch(CurrentSearchLocal);
           }}>
           Search
         </button>

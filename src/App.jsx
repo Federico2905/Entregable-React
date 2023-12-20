@@ -2,9 +2,10 @@
 import "./App.css";
 // importacion de las views
 import Home from "./views/Home";
+import UserDetails from "./views/UserDetails";
+import SearchHistory from "./views/SearchHistory";
 // importacion del router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import UserDetails from "./views/UserDetails";
 
 const App = () => {
   return (
@@ -16,8 +17,8 @@ const App = () => {
         <Route exact path="/users/:username">
           <UserDetails />
         </Route>
-        <Route>
-          <Home />
+        <Route exact path="/searches">
+          <SearchHistory />
         </Route>
       </Switch>
     </Router>

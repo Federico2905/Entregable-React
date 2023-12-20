@@ -10,15 +10,26 @@ import { searchContext } from "../../../contexts/searchContext";
 
 const UsersList = ({ Found }) => {
   const [IsCollapsed, setIsCollapsed] = useState(false);
-  const { CurrentSearch } = useContext(searchContext);
+  const { CurrentSearchGlobal } = useContext(searchContext);
 
   const saveData = async () => {
-    if (CurrentSearch === "") {
+    if (CurrentSearchGlobal === "") {
       return;
     }
-    const SavedUsersResponse = await fetch(`http://localhost:5000/api/v1/searches/users/${CurrentSearch}`);
+    if (Found[0] == "No users has been found") {
+      return;
+    }
+    const SavedUsersResponse = await fetch(`http://localhost:5000/api/v1/searches/users/${CurrentSearchGlobal}`);
     if (SavedUsersResponse.statusText != "Not Found") {
       console.log("The users were saved");
+      const response = await fetch(`http://localhost:5000/api/v1/searches/${CurrentSearchGlobal}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchTerm: CurrentSearchGlobal, type: "users", searchResult: Found }),
+      });
+      console.log("UpdatedUsers:", await response.json());
       return;
     }
     const response = await fetch("http://localhost:5000/api/v1/searches", {
@@ -26,7 +37,7 @@ const UsersList = ({ Found }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ searchTerm: CurrentSearch, type: "users", searchResult: Found }),
+      body: JSON.stringify({ searchTerm: CurrentSearchGlobal, type: "users", searchResult: Found }),
     });
 
     console.log("UsersSaved:", await response.json());
@@ -39,19 +50,16 @@ const UsersList = ({ Found }) => {
     <div className={container}>
       {Found.length != 0 && (
         <>
-          <ListUI title="Users" IsCollapsed={IsCollapsed} setIsCollapsed={setIsCollapsed} />
-          {Found[0] == "No users has been found" && <>{IsCollapsed === false && <p>{Found[0]}</p>}</>}
-          {Found[0] != "No users has been found" && (
-            <>
-              {IsCollapsed === false && (
-                <div className={usersList}>
-                  {Found.map((foundeduser) => {
-                    return <UserCard key={foundeduser.login} User={foundeduser} />;
-                  })}
-                </div>
-              )}
-            </>
-          )}
+          <ListUI title="Users" IsCollapsed={IsCollapsed} setIsCollapsed={setIsCollapsed}>
+            {Found[0] == "No users has been found" && <>{IsCollapsed === false && <p>{Found[0]}</p>}</>}
+            {Found[0] != "No users has been found" && (
+              <div className={usersList}>
+                {Found.map((foundeduser) => {
+                  return <UserCard key={foundeduser.login} User={foundeduser} />;
+                })}
+              </div>
+            )}
+          </ListUI>
         </>
       )}
     </div>

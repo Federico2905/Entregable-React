@@ -1,38 +1,23 @@
 //importaciones de estilos
-import { homeButton, container, containerSecLeft, infoList, title, reposList, img } from "./UserDetails.module.css";
+import { container, containerSecLeft, infoList, title, reposList, img } from "./UserDetails.module.css";
 //importaciones de hooks
 import { useContext, useEffect, useState } from "react";
-//importaciones del Router
-import { Link } from "react-router-dom";
-//importacion de iconos de FontAwesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 //importaciones de utils
 import { ParseDate } from "../../utils/ParseDate";
 //importacion de Octokit
 import { Octokit } from "octokit";
 //importaciones de componentes
+import HomeButton from "../../components/Atoms/HomeButton";
 import UserDetailsRepoCard from "../../components/Molecules/UserDetailsRepoCard";
 //importacion de un context
 import { userContext } from "../../contexts/userContext";
+import SearchHistoryButton from "../../components/Atoms/SearchHistoryButton";
 
 const UserDetails = () => {
   const { CurrentUser } = useContext(userContext);
   const [Repos, SetRepos] = useState([]);
   const octokit = new Octokit();
-  let {
-    avatar_url,
-    company,
-    created_at,
-    email,
-    followers,
-    location,
-    login,
-    name,
-    public_gists,
-    public_repos,
-    repos_url,
-  } = CurrentUser;
+  let { avatar_url, company, created_at, email, followers, location, login, name, public_gists, public_repos, repos_url } = CurrentUser;
   const GetRepos = async () => {
     const response = await octokit.request(`GET ${repos_url}{?per_page}`, {
       per_page: 10,
@@ -67,11 +52,8 @@ const UserDetails = () => {
   }
   return (
     <>
-      <Link className={homeButton} to="/">
-        <button>
-          <FontAwesomeIcon icon={faChevronLeft} /> Home page
-        </button>
-      </Link>
+      <SearchHistoryButton />
+      <HomeButton />
       <div className={container}>
         <div className={containerSecLeft}>
           <img src={avatar_url} className={img} />

@@ -1,21 +1,34 @@
 .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:15px;
-    padding-right:10px;
-    width: 515px;
+    flex-direction: column;
+    align-content: flex-start;
     background-color: #1a1a1a;
+    width: fit-content;
+    padding: 15px;
+    padding-right: 10px;
 }
-.title{
+
+.date {
+    margin: 0px;
+}
+
+.topSec {
+    display: flex;
+    justify-content: space-between;
+    width: 515px;
+}
+
+.title {
     font-size: 30px;
     font-weight: bold;
     margin: 0px;
 }
-.button{
+
+.button {
     height: fit-content;
     width: fit-content;
 }
-.icon{
+
+.icon {
     font-size: 25px;
 }
