@@ -1,10 +1,10 @@
+//importacion de estilos
+import { searchHistoryButton, searchHistoryIcon } from "./SearchHistory.module.css";
 //importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 //importaciones del Router
 import { Link } from "react-router-dom";
-//importacion de estilos
-import { searchHistoryButton, searchHistoryIcon } from "./SearchHistory.module.css";
 
 const SearchHistoryButton = () => {
   return (

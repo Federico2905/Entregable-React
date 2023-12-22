@@ -1,24 +1,20 @@
 //Importacion de estilos
 import { container, containerSec, infoList, img, detailsButton } from "./UserCard.module.css";
-//importaciones de hooks
-import { useContext, useEffect } from "react";
-//importaciones de utils
-import { ParseDate } from "../../../utils/ParseDate";
-//Importaciones del Router
-import { Link } from "react-router-dom";
-//importacion de un context
-import { userContext } from "../../../contexts/userContext";
+//importacion de hooks
+import { useContext } from "react";
 //importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faCalendar, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+//importacion de utils
+import { ParseDate } from "../../../utils/ParseDate";
+//Importacion del Router
+import { Link } from "react-router-dom";
+//importacion de un context
+import { userContext } from "../../../contexts/userContext";
 
 const UserCard = ({ User }) => {
   const { setCurrentUser } = useContext(userContext);
   let { avatar_url, login, name, email, followers, created_at } = User;
-
-  // useEffect(() => {
-  //   console.log("User:", User);
-  // }, [User]);
 
   if (!email) {
     email = "No email registered";

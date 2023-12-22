@@ -1,4 +1,4 @@
-//importaciones de hooks
+//importacion de hooks
 import { useState, createContext } from "react";
 
 export const historyContext = createContext([]);

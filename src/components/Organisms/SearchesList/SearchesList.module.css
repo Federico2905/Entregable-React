@@ -1,6 +1,6 @@
 .container {
     background-color: #3f3e3e;
-    width: fit-content;
+    width: 651px;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -17,5 +17,20 @@
 }
 
 .title {
-    margin: 15px 0px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.deleteAllButton {
+    background-color: rgb(181, 4, 4);
+    height: fit-content;
+    width: fit-content;
+}
+
+.topSec {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }

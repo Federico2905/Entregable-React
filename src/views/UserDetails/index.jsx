@@ -1,17 +1,17 @@
-//importaciones de estilos
+//importacion de estilos
 import { container, containerSecLeft, infoList, title, reposList, img } from "./UserDetails.module.css";
-//importaciones de hooks
+//importacion de hooks
 import { useContext, useEffect, useState } from "react";
-//importaciones de utils
+//importacion de componentes
+import HomeButton from "../../components/Atoms/HomeButton";
+import UserDetailsRepoCard from "../../components/Molecules/UserDetailsRepoCard";
+import SearchHistoryButton from "../../components/Atoms/SearchHistoryButton";
+//importacion de utils
 import { ParseDate } from "../../utils/ParseDate";
 //importacion de Octokit
 import { Octokit } from "octokit";
-//importaciones de componentes
-import HomeButton from "../../components/Atoms/HomeButton";
-import UserDetailsRepoCard from "../../components/Molecules/UserDetailsRepoCard";
 //importacion de un context
 import { userContext } from "../../contexts/userContext";
-import SearchHistoryButton from "../../components/Atoms/SearchHistoryButton";
 
 const UserDetails = () => {
   const { CurrentUser } = useContext(userContext);
@@ -22,13 +22,11 @@ const UserDetails = () => {
     const response = await octokit.request(`GET ${repos_url}{?per_page}`, {
       per_page: 10,
     });
-    // console.log(response.data);
     SetRepos(response.data);
     const limit = await octokit.request("GET /rate_limit");
     console.log(limit);
   };
   useEffect(() => {
-    // console.log(CurrentUser);
     GetRepos();
   }, []);
 
@@ -57,7 +55,6 @@ const UserDetails = () => {
       <div className={container}>
         <div className={containerSecLeft}>
           <img src={avatar_url} className={img} />
-
           <ul className={infoList}>
             <li>
               <b>Name:</b> {name}

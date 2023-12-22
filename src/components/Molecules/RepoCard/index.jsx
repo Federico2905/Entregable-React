@@ -1,22 +1,19 @@
 //importacion de estilos
 import { container, InfoList, detailsButton, repoName, infoListSec } from "./RepoCard.module.css";
-//importaciones de hooks
-import { useEffect } from "react";
-//importaciones de utils
-import { ParseDate } from "../../../utils/ParseDate";
-//importaciones de iconos de FontAwesome
+//importacion de hooks
+import { useRepoModal } from "../../../hooks/useRepoModal";
+//importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faCalendar } from "@fortawesome/free-solid-svg-icons";
-//importacion de un hook
-import { useRepoModal } from "../../../hooks/useRepoModal";
+//importacion de utils
+import { ParseDate } from "../../../utils/ParseDate";
 
 const RepoCard = ({ Repo }) => {
   const { OpenModal, Modal } = useRepoModal();
-
-  // useEffect(() => {
-  //   console.log("Repo:", Repo);
-  // }, []);
-  const { name, language, created_at, watchers } = Repo;
+  let { name, language, created_at, watchers } = Repo;
+  if (!language) {
+    language = "Not shown";
+  }
   return (
     <>
       <Modal />

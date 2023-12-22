@@ -1,4 +1,4 @@
-//importaciones de los Providers
+//importacion de los Providers
 import { FoundContextProvider } from "./foundContext";
 import { UserContextProvider } from "./userContext";
 import { SearchContextProvider } from "./searchContext";

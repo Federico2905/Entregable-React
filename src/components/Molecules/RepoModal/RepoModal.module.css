@@ -18,6 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
 }
 
 .body {
@@ -27,7 +28,6 @@
     position: fixed;
     gap: 20px;
     padding: 25px;
-    z-index: 1;
     background-color: #1a1a1a;
     border-radius: 6px;
     font-size: 20px;
@@ -103,4 +103,5 @@
     right: 25px;
     top: 20px;
     font-size: 30px;
+    cursor: pointer;
 }

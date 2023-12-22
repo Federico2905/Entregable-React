@@ -1,14 +1,17 @@
-//importacion de los estilos
+//importacion de estilos
 import { container, repoList, repoName, repoListSec, detailsButton } from "./UserDetailsRepoCard.module.css";
+//importacion de hooks
+import { useRepoModal } from "../../../hooks/useRepoModal";
 //importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCodeFork, faEye } from "@fortawesome/free-solid-svg-icons";
-//importacion de un hook
-import { useRepoModal } from "../../../hooks/useRepoModal";
 
 const UserDetailsRepoCard = ({ Repo }) => {
-  const { language, name, watchers, forks_count, stargazers_count } = Repo;
+  let { language, name, watchers, forks_count, stargazers_count } = Repo;
   const { OpenModal, Modal } = useRepoModal();
+  if (!language) {
+    language = "Not shown";
+  }
   return (
     <div className={container}>
       <Modal />

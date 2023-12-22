@@ -1,9 +1,10 @@
 //importacion de estilos
 import { container, title as Title, button, icon, topSec, date as Date } from "./ListUI.module.css";
+//importacion de hooks
+import { useEffect, useState } from "react";
 //importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
 
 const ListUI = ({ children, date, title, IsCollapsed, setIsCollapsed }) => {
   const [RealDate, setRealDate] = useState([]);

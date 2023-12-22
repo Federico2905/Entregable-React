@@ -1,4 +1,4 @@
-//importaciones de estilos
+//importacion de estilos
 import {
   container,
   modalOverlay,
@@ -16,33 +16,23 @@ import {
 //importacion de iconos de FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faCalendar, faCodeFork, faStar, faIdCard, faXmark } from "@fortawesome/free-solid-svg-icons";
-//importaciones de utils
+//importacion de utils
 import { ParseDate } from "../../../utils/ParseDate";
 
 const RepoModal = ({ isOpen, Repo, CloseModal }) => {
   if (!isOpen) {
     return null;
   }
-  let {
-    clone_url,
-    created_at,
-    description,
-    forks_count,
-    full_name,
-    id,
-    language,
-    license,
-    name,
-    owner,
-    stargazers_count,
-    watchers,
-  } = Repo;
+  let { clone_url, created_at, description, forks_count, full_name, id, language, license, name, owner, stargazers_count, watchers } = Repo;
   const { login } = owner;
   if (!description) {
     description = "This repository has no description";
   }
   if (!license) {
     license = { name: "This repository does not have a license" };
+  }
+  if (!language) {
+    language = "This repository does not show it's languages";
   }
   const CloneText = `git clone ${clone_url}`;
   return (
@@ -95,13 +85,11 @@ const RepoModal = ({ isOpen, Repo, CloseModal }) => {
         </div>
         <div>
           <h2 className={subtitle}>Cloning this repository:</h2>
-          <h4 className={cloning}>
-            To clone this repository copy and paste the following command on cmd or any other console:
-          </h4>
+          <h4 className={cloning}>To clone this repository copy and paste the following command on cmd or any other console:</h4>
           <input className={input} defaultValue={CloneText} readOnly />
           <h6 className={note}>
-            Note: It's recommended that you clone repositories inside a folder so it's more organized and so you avoid
-            matching file names conflicts and other errors
+            Note: It's recommended that you clone repositories inside a folder so it's more organized and so you avoid matching file names conflicts
+            and other errors
           </h6>
         </div>
       </div>

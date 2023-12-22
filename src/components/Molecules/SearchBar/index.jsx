@@ -1,10 +1,10 @@
-//importaciones de estilos
+//importacion de estilos
 import { input, container, error, errorText } from "./SearchBar.module.css";
+//importacion de hooks
+import { useContext, useState } from "react";
 //importacion de Octokit
 import { Octokit } from "octokit";
-//importaciones de hooks
-import { useContext, useState } from "react";
-//importaciones de contexts
+//importacion de contexts
 import { foundContext } from "../../../contexts/foundContext";
 import { searchContext } from "../../../contexts/searchContext";
 
@@ -28,14 +28,12 @@ const SearchBar = () => {
       const SavedUsersData = await SavedUsersResponse.json();
       const SavedUsers = SavedUsersData.result.searchResult;
       arrUsersFound = SavedUsers;
-      // console.log("SavedUSers:", SavedUsers);
     } else {
       const UserResponse = await octokit.request("GET /search/users?q={q}{&per_page}", {
         q: `${Search} in:login`,
-        per_page: 3,
+        per_page: 5,
       });
       const UserData = Object.values(UserResponse.data.items);
-      // console.log("UserData:",UserData);
       const UserPromises = UserData.map(async (user) => {
         const { login } = user;
         const response = await octokit.request("GET /users/{username}", {
@@ -47,7 +45,6 @@ const SearchBar = () => {
       await Promise.all(UserPromises);
       if (arrUsersFound.length == 0) {
         arrUsersFound.push("No users has been found");
-        // console.log("arrUsersFound:", arrUsersFound);
       }
     }
 
@@ -58,14 +55,12 @@ const SearchBar = () => {
       const SavedReposData = await SavedReposResponse.json();
       const SavedRepos = SavedReposData.result.searchResult;
       arrReposFound = SavedRepos;
-      // console.log("SavedRepos:", SavedRepos);
     } else {
       const ReposResponse = await octokit.request("GET /search/repositories?q={q}{&per_page}", {
         q: `${Search} in:name`,
-        per_page: 3,
+        per_page: 5,
       });
       const ReposData = Object.values(ReposResponse.data.items);
-      // console.log("ReposData",ReposData);
       const RepoPromises = ReposData.map(async ({ owner, name }) => {
         const response = await octokit.request("GET /repos/{owner}/{repo}", {
           owner: owner.login,
@@ -78,18 +73,14 @@ const SearchBar = () => {
       if (arrReposFound.length == 0) {
         arrReposFound.push("No repos has been found");
       }
-      // console.log("arrReposFound:", arrReposFound);
     }
     setCurrentSearchGlobal(Search);
     SetFound({ Users: arrUsersFound, Repos: arrReposFound });
     SetError(false);
+
     const limit = await octokit.request("GET /rate_limit");
     console.log("Limit:", limit);
   };
-
-  // useEffect(() => {
-  //   console.log(Search);
-  // }, [Search]);
 
   return (
     <>
